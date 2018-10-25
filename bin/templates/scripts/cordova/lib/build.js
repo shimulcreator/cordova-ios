@@ -97,7 +97,7 @@ module.exports.run = function (buildOpts) {
             var buildType = buildOpts.release ? 'release' : 'debug';
             var config = buildConfig.ios[buildType];
             if (config) {
-                ['codeSignIdentity', 'codeSignResourceRules', 'provisioningProfile', 'developmentTeam', 'packageType', 'buildFlag', 'iCloudContainerEnvironment'].forEach(
+                ['codeSignIdentity', 'codeSignResourceRules', 'provisioningProfile', 'developmentTeam', 'packageType', 'buildFlag'].forEach(
                     function (key) {
                         buildOpts[key] = buildOpts[key] || config[key];
                     });
@@ -186,7 +186,7 @@ module.exports.run = function (buildOpts) {
             };
 
             var bundleIdentifier = projectFile.parse(locations).getPackageName();
-            var exportOptions = {'compileBitcode': false, 'method': 'development'};
+            var exportOptions = {'compileBitcode': false, 'method': 'development', 'iCloudContainerEnvironment': 'Development'};
 
             if (buildOpts.packageType) {
                 exportOptions.method = buildOpts.packageType;
